@@ -4,9 +4,11 @@ import java.util.Arrays;
 
 public class Main {
     /** You may init and run algorithm here */
-
     public static void main(String args[]){
-        System.out.println("Result is: " + Arrays.toString(GeneticAlg.execute(doubles -> {
+
+        int POPULATION_SIZE = 50;
+
+        System.out.println("Result is: " + Arrays.toString(GeneticAlg.execute(POPULATION_SIZE, doubles -> {
             double result = 0;
             for (double elem: doubles){
                 result += elem*elem;
