@@ -3,9 +3,9 @@ package ru.mirea;
 class GeneticAlg {
 
     /** Constants important for algorithm */
-    private static final int iterationsNumber = 100;
+    private static final int iterationsNumber = 150;
     static final double uniformRate = 0.8;
-    static final double mutationRate = 0.01;
+    static final double mutationRate = 0.02;
     static final int tournamentSize = 10;
     private static final int populationSize = 300;
 
