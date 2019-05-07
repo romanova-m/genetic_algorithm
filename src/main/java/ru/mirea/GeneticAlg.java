@@ -3,10 +3,11 @@ package ru.mirea;
 class GeneticAlg {
 
     /** Constants important for algorithm */
-    static final int iterationsNumber = 100;
+    private static final int iterationsNumber = 100;
     static final double uniformRate = 0.8;
     static final double mutationRate = 0.01;
     static final int tournamentSize = 10;
+    private static final int populationSize = 300;
 
     /** Holds optimized function */
     private static FuncInterface func;
@@ -18,11 +19,10 @@ class GeneticAlg {
      * Size of population and optimized function on input
      * Array of best arguments on output
      *
-     * @param populationSize number of required individuals in population.
      * @param func wrapper object for function calculation
      * @return array at which the function is minimal
      */
-    static double[] execute(int populationSize, FuncInterface func){
+    static double[] execute(FuncInterface func){
         GeneticAlg.func = func;
         int generationCount = 0;
 
@@ -33,7 +33,7 @@ class GeneticAlg {
         Individual currFittest = population.getFittest();
         System.out.println( "Generation: " + generationCount + " Best F: " +
                 (-1) * population.getFittest().getFitness());
-        for (int i = 0; i < 100; i++){
+        for (int i = 0; i < iterationsNumber; i++){
             lastFittest = currFittest;
             population.evolvePopulation();
             currFittest = population.getFittest();

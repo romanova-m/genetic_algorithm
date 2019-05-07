@@ -37,12 +37,8 @@ class Population {
         } else {
             elitismOffset = 0;
         }
-        for (int i = elitismOffset; i < capacity; i++) {
-            Individual indiv1 = tournamentSelection();
-            Individual indiv2 = tournamentSelection();
-            Individual newIndiv = crossover(indiv1, indiv2);
-            newIndividuals.add(i, newIndiv);
-        }
+        for (int i = elitismOffset; i < capacity; i++)
+            newIndividuals.add(i, crossover(tournamentSelection(), tournamentSelection()));
         individuals = newIndividuals;
     }
     private Individual mutate(Individual indiv) {
@@ -68,15 +64,16 @@ class Population {
         return mutate(tournament.getFittest());
     }
 
-    private Individual crossover(Individual indiv1, Individual indiv2) {
+    /**
+     * Randomly selects genes from two best individuals.
+     * Uniform rate represents probability to gain genes from first person.
+     */
+    private Individual crossover(Individual ind1, Individual ind2) {
         Individual newSol = new Individual();
         for (int i = 0; i < newSol.getDefaultGeneLength(); i++) {
             double uniformRate = GeneticAlg.uniformRate;
-            if (Math.random() <= uniformRate) {
-                newSol.setSingleGene(i, indiv1.getSingleGene(i));
-            } else {
-                newSol.setSingleGene(i, indiv2.getSingleGene(i));
-            }
+            if (Math.random() <= uniformRate) newSol.setSingleGene(i, ind1.getSingleGene(i));
+            else newSol.setSingleGene(i, ind2.getSingleGene(i));
         }
         return newSol;
     }
