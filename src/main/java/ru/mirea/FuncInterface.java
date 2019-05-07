@@ -1,4 +1,4 @@
-package java.ru.mirea;
+package ru.mirea;
 
 public interface FuncInterface {
     /** Interface to create functions to optimize */

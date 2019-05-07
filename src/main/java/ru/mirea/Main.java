@@ -1,19 +1,18 @@
-package java.ru.mirea;
+package ru.mirea;
 
 import java.util.Arrays;
-
 public class Main {
-    /** You may init and run algorithm here */
+    /** Runs algorithm here */
     public static void main(String args[]){
 
-        int POPULATION_SIZE = 50;
+        int POPULATION_SIZE = 300;
 
-        System.out.println("Result is: " + Arrays.toString(GeneticAlg.execute(POPULATION_SIZE, doubles -> {
-            double result = 0;
-            for (double elem: doubles){
-                result += elem*elem;
-            }
-            return result;
-        }))); // Now we are calling opt for x^2+y^2+...
+        /* Replace with your function */
+        FuncInterface funcInterface = doubles -> (11.0/5.0)*doubles[0]*doubles[0] + (6.0/5.0)*doubles[1]*doubles[1] -
+                (22.0/10.0)*doubles[1]*doubles[0] + doubles[0];
+
+        double[] result = GeneticAlg.execute(POPULATION_SIZE,
+                funcInterface);
+        System.out.println("Result is: " + Arrays.toString(result) + "\tF=" + funcInterface.evaluate(result));
     }
 }

@@ -1,4 +1,4 @@
-package java.ru.mirea;
+package ru.mirea;
 
 class GeneticAlg {
 
@@ -21,22 +21,20 @@ class GeneticAlg {
         int generationCount = 0;
 
         Population population = new Population(populationSize);
+        population.individuals =  population.createRandomPop();
 
         Individual lastFittest = population.getFittest();
         Individual currFittest = population.getFittest();
-
-
-        while (lastFittest.getFitness() < currFittest.getFitness()) {
-            System.out.println( "Generation: " + generationCount + " Correct genes found: " +
-                    population.getFittest().getFitness());
-            population = evolvePopulation(population);
+        System.out.println( "Generation: " + generationCount + " Best F: " +
+                (-1) * population.getFittest().getFitness());
+        for (int i = 0; i < 100; i++){
+            lastFittest = currFittest;
+            population.evolvePopulation();
+            currFittest = population.getFittest();
             generationCount++;
+             System.out.println( "Generation: " + generationCount + " Best F: " +
+                     (-1) * population.getFittest().getFitness());
         }
-
-        return lastFittest.getCords();
-    }
-
-    private static Population evolvePopulation(Population population) {
-        return population;
+        return lastFittest.getGeneDoubles();
     }
 }
