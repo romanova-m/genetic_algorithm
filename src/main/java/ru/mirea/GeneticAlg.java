@@ -2,6 +2,12 @@ package ru.mirea;
 
 class GeneticAlg {
 
+    /** Constants important for algorithm */
+    static final int iterationsNumber = 100;
+    static final double uniformRate = 0.8;
+    static final double mutationRate = 0.01;
+    static final int tournamentSize = 10;
+
     /** Holds optimized function */
     private static FuncInterface func;
     /** Just to reduce code. Calls evaluate for given args **/
